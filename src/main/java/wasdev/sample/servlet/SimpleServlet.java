@@ -41,7 +41,7 @@ public class SimpleServlet extends HttpServlet {
         String liabilities = request.getParameter("liabilities");
         response.setContentType("application/json");
         try {
-            URL url = new URL("https://github.com/Catch2T8/uhac-1480208813071/raw/master/target/multilayerperceptron.model");
+            URL url = new URL("https://github.com/Catch2T8/uhac-1480208813071/raw/master/multilayerperceptron.model");
             MultilayerPerceptron model = (MultilayerPerceptron) SerializationHelper.read(url.openStream());
             String arff = "@RELATION credit\n\n"
                     + "   @ATTRIBUTE age  NUMERIC\n"
@@ -57,7 +57,6 @@ public class SimpleServlet extends HttpServlet {
                     + "   @ATTRIBUTE liabilities NUMERIC\n"
                     + "   @ATTRIBUTE appraisal NUMERIC\n\n"
                     + "   @DATA\n"
-                    //+ "22,male,single,0,no,parents,\"low class\",full,185000,90000,0,0\n"
                     + age + ","
                     + sex + ","
                     + civil + ","
@@ -74,8 +73,6 @@ public class SimpleServlet extends HttpServlet {
             instance.setClassIndex(instance.numAttributes() - 1);
             double result = model.classifyInstance(instance.instance(0));
             response.getWriter().print("{ \"message\" : \"" + result + "\" }");
-        response.setContentType("text/html");
-        response.getWriter().print(result);
         } catch (Exception ex) {
             response.getWriter().print("{ \"message\" : \"Error :\"" + ex.getMessage() + "\" }");
         }

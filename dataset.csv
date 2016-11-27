@@ -1,0 +1,12 @@
+age,sex,civil status,children,own car,house,subdivision,employment,net per annum,assets,liabilities,appraisal
+21,male,single,0,no,parents,low class,full,192000,100000,0,20000
+23,female,married,3,no,rent,low class,part,120000,10000,500,0
+24,female,single,0,no,rent,mid class,full,216000,70000,0,30000
+25,male,married,0,no,rent,low class,part,180000,40000,1000,20000
+25,male,single,0,no,parents,mid class,full,240000,300000,1000,40000
+28,male,single,0,no,rent,low class,part,140000,10000,50000,0
+29,female,married,3,yes,mortgage,low class,full,468000,180000,20000,120000
+32,female,single,0,no,mortgage,low class,full,408000,300000,40000,80000
+35,male,married,2,no,rent,mid class,full,336000,120000,0,160000
+40,male,married,2,yes,own,first class,full,600000,2000000,40000,300000
+42,female,married,3,yes,own,mid class,full,540000,1500000,200000,275000
