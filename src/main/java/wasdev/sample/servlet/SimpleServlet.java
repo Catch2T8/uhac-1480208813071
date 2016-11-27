@@ -1,6 +1,7 @@
 package wasdev.sample.servlet;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,7 +38,8 @@ public class SimpleServlet extends HttpServlet {
         String liabilities = request.getParameter("liabilities");
         String appraisal = request.getParameter("appraisal");
         try {
-            Classifier model = (Classifier) SerializationHelper.read("multilayerperceptron.model");
+            URL url = new URL("https://github.com/Catch2T8/uhac-1480208813071/raw/master/target/multilayerperceptron.model");
+            Classifier model = (Classifier) SerializationHelper.read(url.openStream());
             
         response.setContentType("text/html");
         response.getWriter().print(model.toString());
