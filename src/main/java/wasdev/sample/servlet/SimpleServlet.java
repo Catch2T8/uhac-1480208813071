@@ -39,6 +39,7 @@ public class SimpleServlet extends HttpServlet {
         String annum = request.getParameter("annum");
         String assets = request.getParameter("assets");
         String liabilities = request.getParameter("liabilities");
+        response.setContentType("application/json");
         try {
             URL url = new URL("https://github.com/Catch2T8/uhac-1480208813071/raw/master/target/multilayerperceptron.model");
             MultilayerPerceptron model = (MultilayerPerceptron) SerializationHelper.read(url.openStream());
@@ -62,8 +63,8 @@ public class SimpleServlet extends HttpServlet {
                     + civil + ","
                     + children + ","
                     + car + ","
-                    + house + ","
-                    + subdivision + ","
+                    + house + ",\""
+                    + subdivision + "\","
                     + employment + ","
                     + annum + ","
                     + assets + ","
@@ -72,11 +73,10 @@ public class SimpleServlet extends HttpServlet {
             Instances instance = new Instances(new StringReader(arff));
             instance.setClassIndex(instance.numAttributes() - 1);
             double result = model.classifyInstance(instance.instance(0));
-            
+            response.getWriter().print("{ \"message\" : \"" + result + "\" }");
         response.setContentType("text/html");
         response.getWriter().print(result);
         } catch (Exception ex) {
-            response.setContentType("application/json");
             response.getWriter().print("{ \"message\" : \"Error :\"" + ex.getMessage() + "\" }");
         }
     }
