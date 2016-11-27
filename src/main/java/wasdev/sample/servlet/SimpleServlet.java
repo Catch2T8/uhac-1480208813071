@@ -50,7 +50,7 @@ public class SimpleServlet extends HttpServlet {
                     + "   @ATTRIBUTE children  NUMERIC\n"
                     + "   @ATTRIBUTE \"own car\" {yes,no}\n"
                     + "   @ATTRIBUTE house {rent,mortgage,parents,own}\n"
-                    + "   @ATTRIBUTE subdivision {low class,mid class,first class}\n"
+                    + "   @ATTRIBUTE subdivision {\"low class\",\"mid class\",\"first class\"}\n"
                     + "   @ATTRIBUTE employment {full,part}\n"
                     + "   @ATTRIBUTE \"net per annum\" NUMERIC\n"
                     + "   @ATTRIBUTE assets NUMERIC\n"
