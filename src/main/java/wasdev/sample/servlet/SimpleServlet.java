@@ -57,7 +57,7 @@ public class SimpleServlet extends HttpServlet {
                     + "   @ATTRIBUTE liabilities NUMERIC\n"
                     + "   @ATTRIBUTE appraisal NUMERIC\n\n"
                     + "   @DATA\n"
-                    + "22,male,single,0,no,parents,\"low class\",full,185000,90000,0,0"
+                    //+ "22,male,single,0,no,parents,\"low class\",full,185000,90000,0,0\n"
                     + age + ","
                     + sex + ","
                     + civil + ","
