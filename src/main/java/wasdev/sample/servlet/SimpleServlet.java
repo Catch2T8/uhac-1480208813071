@@ -59,6 +59,7 @@ public class SimpleServlet extends HttpServlet {
                     + "   @DATA\n"
                     + "22,male,single,0,no,parents,\"low class\",full,185000,90000,0,0";
             Instances instance = new Instances(new StringReader(arff));
+            instance.setClassIndex(instance.numAttributes() - 1);
             double result = model.classifyInstance(instance.instance(0));
             
         response.setContentType("text/html");
