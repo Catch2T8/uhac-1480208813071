@@ -1,6 +1,7 @@
 package wasdev.sample.servlet;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import weka.classifiers.Classifier;
+import weka.classifiers.functions.MultilayerPerceptron;
+import weka.core.Instances;
 import weka.core.SerializationHelper;
 
 /**
@@ -39,10 +42,27 @@ public class SimpleServlet extends HttpServlet {
         String appraisal = request.getParameter("appraisal");
         try {
             URL url = new URL("https://github.com/Catch2T8/uhac-1480208813071/raw/master/target/multilayerperceptron.model");
-            Classifier model = (Classifier) SerializationHelper.read(url.openStream());
+            MultilayerPerceptron model = (MultilayerPerceptron) SerializationHelper.read(url.openStream());
+            String arff = "@RELATION credit\n\n"
+                    + "   @ATTRIBUTE age  NUMERIC\n"
+                    + "   @ATTRIBUTE sex  {male,female}\n"
+                    + "   @ATTRIBUTE \"civil status\" {single,married}\n"
+                    + "   @ATTRIBUTE children  NUMERIC\n"
+                    + "   @ATTRIBUTE \"own car\" {yes,no}\n"
+                    + "   @ATTRIBUTE house {rent,mortgage,parents,own}\n"
+                    + "   @ATTRIBUTE subdivision {low class,mid class,first class}\n"
+                    + "   @ATTRIBUTE employment {full,part}\n"
+                    + "   @ATTRIBUTE \"net per annum\" NUMERIC\n"
+                    + "   @ATTRIBUTE assets NUMERIC\n"
+                    + "   @ATTRIBUTE liabilities NUMERIC\n"
+                    + "   @ATTRIBUTE appraisal NUMERIC\n\n"
+                    + "   @DATA\n"
+                    + "22,male,single,0,no,parents,low class,full,185000,0,0";
+            Instances instance = new Instances(new StringReader(arff));
+            double result = model.classifyInstance(instance.instance(0));
             
         response.setContentType("text/html");
-        response.getWriter().print(model.toString());
+        response.getWriter().print(result);
         } catch (Exception ex) {
             response.setContentType("application/json");
             response.getWriter().print("{ \"message\" : \"Error :\"" + ex.getMessage() + "\" }");
