@@ -1,12 +1,16 @@
 package wasdev.sample.servlet;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import weka.classifiers.Classifier;
+import weka.core.SerializationHelper;
 
 /**
  * Servlet implementation class SimpleServlet
@@ -32,11 +36,15 @@ public class SimpleServlet extends HttpServlet {
         String assets = request.getParameter("assets");
         String liabilities = request.getParameter("liabilities");
         String appraisal = request.getParameter("appraisal");
-        
+        try {
+            Classifier model = (Classifier) SerializationHelper.read("multilayerperceptron.model");
+            
         response.setContentType("text/html");
-        response.getWriter().print("Hello World!");
-        response.getWriter().print(age);
-        response.getWriter().print(civil);
+        response.getWriter().print(model.toString());
+        } catch (Exception ex) {
+            response.setContentType("application/json");
+            response.getWriter().print("{ \"message\" : \"Error :\"" + ex.getMessage() + "\" }");
+        }
     }
 
 }
