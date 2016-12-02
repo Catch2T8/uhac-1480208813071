@@ -72,7 +72,7 @@ public class SimpleServlet extends HttpServlet {
             Instances instance = new Instances(new StringReader(arff));
             instance.setClassIndex(instance.numAttributes() - 1);
             double result = model.classifyInstance(instance.instance(0));
-            response.getWriter().print("{ \"message\" : \"" + result + "\" }");
+            response.getWriter().print("{ \"appraisal\" : " + result + "}");
         } catch (Exception ex) {
             response.getWriter().print("{ \"message\" : \"Error :\"" + ex.getMessage() + "\" }");
         }
