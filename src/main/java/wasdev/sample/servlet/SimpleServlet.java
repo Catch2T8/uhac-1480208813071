@@ -39,6 +39,10 @@ public class SimpleServlet extends HttpServlet {
         String annum = request.getParameter("annum");
         String assets = request.getParameter("assets");
         String liabilities = request.getParameter("liabilities");
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
+        response.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
+        response.addHeader("Access-Control-Max-Age", "1728000");
         response.setContentType("application/json");
         try {
             URL url = new URL("https://github.com/Catch2T8/uhac-1480208813071/raw/master/multilayerperceptron.model");
