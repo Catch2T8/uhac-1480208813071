@@ -83,7 +83,7 @@ public class SimpleServlet extends HttpServlet {
             double result = model.classifyInstance(instance.instance(0));
             response.getWriter().print("{ \"appraisal\" : " + result + "}");
         } catch (Exception ex) {
-            response.getWriter().print("{ \"message\" : \"Error :\"" + ex.getMessage() + "\" }");
+            response.getWriter().print("{ \"message\" : \"Error :" + ex.getMessage() + "\" }");
         }
     }
 
